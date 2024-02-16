@@ -48,27 +48,32 @@ def main():  # pragma: no cover
     # Iterate through the repositories and open an issue/PR if dependabot is not enabled
     count_eligible = 0
     for repo in repos:
+        print("Checking " + repo.full_name)
         # Check all the things to see if repo is eligble for a pr/issue
         if repo.full_name in exempt_repositories_list:
+            print("\tRepo found in list of exempt repositories")
             continue
         if repo.archived:
+            print("\tRepo is marked as archived")
             continue
         try:
             if repo.file_contents(".github/dependabot.yml").size > 0:
+                print("\tRepo already has Dependabot configuration")
                 continue
         except github3.exceptions.NotFoundError:
             pass
         try:
             if repo.file_contents(".github/dependabot.yaml").size > 0:
+                print("\tRepo already has Dependabot configuration")
                 continue
         except github3.exceptions.NotFoundError:
             pass
         if created_after_date and repo.created_at.replace(
             tzinfo=None
         ) < datetime.strptime(created_after_date, "%Y-%m-%d"):
+            print("\tCreated at date less than created after date")
             continue
 
-        print("Checking " + repo.full_name)
         # Try to detect package managers and build a dependabot file
         dependabot_file = build_dependabot_file(repo)
         if dependabot_file is None:
