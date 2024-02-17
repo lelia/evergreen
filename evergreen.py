@@ -152,7 +152,9 @@ def is_dependabot_security_updates_enabled(owner, repo, access_token):
 
     response = requests.get(url, headers=headers, timeout=20)
     if response.status_code == 200:
+        print("Dependabot security settings already enabled!")
         return response.json()["enabled"]
+    print("Dependabot security settings not enabled, attempting to enable...")
     return False
 
 
