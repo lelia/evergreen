@@ -68,8 +68,7 @@ def main():  # pragma: no cover
                 continue
         except github3.exceptions.NotFoundError:
             pass
-        if created_after_date and repo.created_at < datetime.strptime(
-            created_after_date, "%Y-%m-%d"):
+        if created_after_date and repo.created_at < created_after_date:
             continue
 
         # Try to detect package managers and build a dependabot file
