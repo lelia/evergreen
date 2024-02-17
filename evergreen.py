@@ -143,7 +143,7 @@ def main():  # pragma: no cover
                     print("\tFailed to create pull request. Check write permissions.")
                     continue
 
-    print("Done. " + str(count_eligible) + " repositories were eligible.")
+    print("Done! " + str(count_eligible) + " repositories were eligible.")
 
 
 def is_dependabot_security_updates_enabled(owner, repo, access_token):
