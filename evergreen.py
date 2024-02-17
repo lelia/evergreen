@@ -44,7 +44,6 @@ def main():  # pragma: no cover
 
     # Get the repositories from the organization or list of repositories
     repos = get_repos_iterator(organization, repository_list, github_connection)
-    print("Found repos: " + repos)
 
     # Iterate through the repositories and open an issue/PR if dependabot is not enabled
     count_eligible = 0
