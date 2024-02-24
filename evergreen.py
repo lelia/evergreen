@@ -67,9 +67,11 @@ def main():  # pragma: no cover
         # Print each datetime value
         print("Created after date: " + created_after_date)
         print("Repo created at: " + repo.created_at)
-        print("Formatted datetime string: " + datetime.strptime(created_after_date, "%Y-%m-%d").replace(tzinfo=None))
+        datetime_string = datetime.strptime(created_after_date, "%Y-%m-%d").replace(tzinfo=None)
+        print("Formatted datetime string: " + datetime_string)
 
-        if created_after_date and repo.created_at < datetime.strptime(created_after_date, "%Y-%m-%d").replace(tzinfo=None):
+        if created_after_date and repo.created_at < datetime_string:
+        # if created_after_date and repo.created_at < datetime.strptime(created_after_date, "%Y-%m-%d").replace(tzinfo=None):
         # if created_after_date and repo.created_at.replace(
         #     tzinfo=None
         # ) < datetime.strptime(created_after_date, "%Y-%m-%d"):
